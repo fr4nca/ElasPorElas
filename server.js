@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== "production") app.use(cors());
 app.use(bodyParser.json());
 
 //Routes
+app.use("/auth", require("./api/auth"));
 app.use("/mulher", require("./api/mulher"));
 app.use("/comentario", require("./api/comentario"));
 app.use("/ajuda", require("./api/ajuda"));

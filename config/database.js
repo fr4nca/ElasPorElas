@@ -10,10 +10,7 @@ con.connect(() => {
 });
 
 const query = (qry, callback) => {
-  con.query(qry, (err, res, fields) => {
-    if (err) throw err;
-    callback(err, res, fields);
-  });
+  con.query(qry, (err, res, fields) => callback(err, res, fields));
 };
 
 module.exports = query;
