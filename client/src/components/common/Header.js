@@ -10,7 +10,7 @@ class Header extends Component {
   };
 
   render() {
-    const { isLoggedIn, user } = this.props.auth;
+    const { isLoggedIn } = this.props.auth;
 
     const authLinks = (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
