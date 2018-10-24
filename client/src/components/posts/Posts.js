@@ -5,10 +5,6 @@ import { getPosts } from "../../actions/postsActions";
 import PostItem from "./PostItem";
 
 class Posts extends Component {
-  state = {
-    posts: {}
-  };
-
   componentDidMount() {
     this.props.getPosts();
   }
@@ -21,16 +17,16 @@ class Posts extends Component {
       treta = <h1>Alecrim</h1>;
     } else if (posts.length > 0) {
       treta = posts.map(post => (
-        <PostItem key={post["dta_post"]} post={post} />
+        <PostItem key={post.dta_post} post={post} cpf={post.mulher_CPF} />
       ));
     }
-
-    return <ol>{treta}</ol>;
+    return <ul>{treta}</ul>;
   }
 }
 
 Posts.propTypes = {
-  posts: PropTypes.object.isRequired
+  posts: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
