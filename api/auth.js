@@ -36,40 +36,20 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/registerAjuda", (req, res) => {
-  try {
-    const { CPF, ajuda } = req.body;
-    const qry = `INSERT INTO catalogo VALUES( '${CPF}', ${ajuda} )`;
-    query(qry, err => {
-      if (err) {
-        return res.status(400).send({ error: "Registration failed" });
-      }
-      return res.status(200).send({ msg: "Registration successfull" });
-    });
-  } catch (e) {
-    return res.status(400).send({ error: "Registration failed" });
-  }
-});
-
 router.post("/authenticate", async (req, res) => {
   const { email, senha } = req.body;
   const qry = `SELECT * FROM mulher WHERE email = '${email}'`;
   query(qry, async (err, result, fields) => {
     if (result[0]) {
-      let user = {};
-      fields.forEach(field => {
-        user = {
-          ...user,
-          [field.name]: result[0][`${field.name}`]
-        };
-      });
-      if (!(await bcrypt.compare(senha, result[0]["senha"]))) {
-        return res.status(400).send({ error: "Invalid password." });
+      let user = result[0];
+      if (!(await bcrypt.compare(senha, user.senha))) {
+        return res.status(200).send({ error: "Senha inválida" });
       } else {
-        return res.status(200).send({ user });
+        user.senha = "";
+        return res.status(200).send(user);
       }
     } else {
-      return res.status(400).send({ error: "User not found." });
+      return res.status(200).send({ error: "Usuário não encontrado" });
     }
   });
 });

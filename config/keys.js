@@ -1,7 +1,7 @@
 module.exports = {
   localDB: {
     host: "localhost",
-    user: "fr4nca",
+    user: "franca",
     password: "62013",
     database: "mydb"
   },

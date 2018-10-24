@@ -6,7 +6,7 @@ const app = express();
 const port = 5000 || process.env.PORT;
 
 //Middlewares
-if (process.env.NODE_ENV !== "production") app.use(cors());
+app.use(cors());
 app.use(bodyParser.json());
 
 //Routes
