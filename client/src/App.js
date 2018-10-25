@@ -7,6 +7,7 @@ import Header from "./components/common/Header";
 import LoginForm from "./components/user/LoginForm";
 import Posts from "./components/posts/Posts";
 import PrivateRoute from "./components/common/PrivateRoute";
+import RegisterForm from "./components/user/RegisterForm";
 
 class App extends Component {
   render() {
@@ -15,8 +16,9 @@ class App extends Component {
         <Router>
           <Fragment>
             <Header />
-            <Route exact path="/" component={LoginForm} />
             <div className="container">
+              <Route exact path="/" component={LoginForm} />
+              <Route exact path="/register" component={RegisterForm} />
               <Switch>
                 <PrivateRoute exact path="/posts" component={Posts} />
               </Switch>

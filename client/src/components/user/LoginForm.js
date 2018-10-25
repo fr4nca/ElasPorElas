@@ -20,7 +20,9 @@ class LoginForm extends Component {
         error: nextProps.error
       });
       setTimeout(() => {
-        this.setState({ error: {} });
+        this.setState({
+          error: ""
+        });
       }, 2000);
     }
   }
@@ -47,15 +49,15 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row ">
         <div className="col s4 offset-s4">
           <div
             style={{
-              height: 280 + "px",
+              height: 296 + "px",
               marginTop: 30 + "%",
-              fontSize: 30 + "px"
+              fontSize: 40 + "px"
             }}
-            className="card"
+            className="card z-depth-3"
           >
             <div className="card-content">
               <form onSubmit={this.onSubmit}>
@@ -70,14 +72,7 @@ class LoginForm extends Component {
                     onChange={this.onChange}
                     required
                   />
-                  <label
-                    style={{
-                      fontSize: 15 + "px"
-                    }}
-                    htmlFor="email"
-                  >
-                    Email
-                  </label>
+                  <label htmlFor="email">Email</label>
                   <span
                     className="helper-text"
                     data-error="Digite um e-mail válido"

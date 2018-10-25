@@ -1,5 +1,13 @@
 body {
-  background-color: #f6f6f6;
+  font-size: 20px;
+  background-color: #f0f0f0;
+}
+.input-field label {
+  font-size: 13px;
+}
+
+input[type="checkbox"] {
+  color: #662d91 !important;
 }
 
 .input-field input:focus::after + label::after {
@@ -27,4 +35,33 @@ body {
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #662d91;
+}
+
+.input-field textarea:focus::after + label::after {
+  color: #662d91;
+}
+/* label focus color */
+.input-field textarea:focus + label {
+  color: #662d91 !important;
+}
+/* label underline focus color */
+.input-field textarea:focus {
+  border-bottom: 1px solid #662d91 !important;
+  box-shadow: 0 1px 0 0 #662d91 !important;
+}
+/* valid color */
+.input-field textarea.valid {
+  border-bottom: 1px solid #662d91 !important;
+  box-shadow: 0 1px 0 0 #662d91 !important;
+}
+/* invalid color */
+.input-field textarea.invalid {
+  border-bottom: 1px solid #662d91 !important;
+  box-shadow: 0 1px 0 0 #662d91 !important;
+}
+
+.checkbox-orange[type="checkbox"]:checked + label:after {
+  color: #662d91 !important;
+  border: 2px solid #662d91 !important;
+  background-color: #662d91 !important;
 }

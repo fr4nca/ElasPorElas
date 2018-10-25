@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { logoutUser } from "../../actions/authActions";
 
 class Header extends Component {
+  state = {
+    route: ""
+  };
+
   onLogoutClick = () => {
     this.props.logoutUser();
   };
@@ -15,7 +20,9 @@ class Header extends Component {
     const authLinks = (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
-          <a onClick={this.onLogoutClick}>Sair</a>
+          <a href="/" onClick={this.onLogoutClick}>
+            Sair
+          </a>
         </li>
       </ul>
     );
@@ -23,20 +30,26 @@ class Header extends Component {
     const guestLinks = (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
-          <Link to="/register">Registrar</Link>
+          {this.props.location.pathname === "/register" ? (
+            <Link to="/">Login</Link>
+          ) : (
+            <Link to="/register">Registrar</Link>
+          )}
         </li>
       </ul>
     );
 
     return (
-      <nav style={{ backgroundColor: "#662D91" }}>
-        <div className="nav-wrapper container">
-          <Link to="/posts" className="brand-logo">
-            Elas por elas
-          </Link>
-          {isLoggedIn ? authLinks : guestLinks}
-        </div>
-      </nav>
+      <div className="navbar-fixed z-depth-3">
+        <nav style={{ backgroundColor: "#662D91" }}>
+          <div className="nav-wrapper container ">
+            <Link to="/posts" className="brand-logo">
+              Elas por elas
+            </Link>
+            {isLoggedIn ? authLinks : guestLinks}
+          </div>
+        </nav>
+      </div>
     );
   }
 }
@@ -50,7 +63,9 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Header);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logoutUser }
+  )(Header)
+);
