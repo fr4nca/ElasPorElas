@@ -11,11 +11,12 @@ export const getPosts = () => async dispatch => {
 };
 
 export const addPost = post => async dispatch => {
+  const { dta_post, mulher_CPF, descricao, anonimo } = post;
   await axios.post("http://localhost:5000/post/add", {
-    dta_post: post.dta_post,
-    mulher_CPF: post.mulher_CPF,
-    descricao: post.descricao,
-    anonimo: post.anonimo
+    dta_post,
+    mulher_CPF,
+    descricao,
+    anonimo
   });
   dispatch({
     type: ADD_POST,

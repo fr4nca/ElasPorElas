@@ -58,6 +58,7 @@ class PostForm extends Component {
             className="materialize-textarea"
             id="post"
             name="descricao"
+            required
           />
           <label style={{ fontSize: 20 + "px" }} htmlFor="post">
             Digite seu texto..
@@ -79,7 +80,7 @@ class PostForm extends Component {
         </div>
         <input
           style={{ backgroundColor: "#662D91" }}
-          className="btn btn-floating btn-small right"
+          className="btn btn-floating btn-small"
           type="submit"
           value="+"
         />
@@ -95,7 +96,9 @@ class PostForm extends Component {
           style={{ backgroundColor: "#662D91" }}
           onClick={this.toggle}
         >
-          <i className={this.state.toggle ? "fa fa-minus" : "fa fa-plus"} />
+          <i
+            className={this.state.toggle ? "fa fa-times" : "fa fa-pen-fancy"}
+          />
         </button>
         {this.state.toggle ? this.form() : null}
       </div>

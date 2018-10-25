@@ -20,7 +20,11 @@ class Header extends Component {
     const authLinks = (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
-          <a href="/" onClick={this.onLogoutClick}>
+          <a
+            style={{ fontSize: 17 + "px" }}
+            href="/"
+            onClick={this.onLogoutClick}
+          >
             Sair
           </a>
         </li>
@@ -31,9 +35,13 @@ class Header extends Component {
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
           {this.props.location.pathname === "/register" ? (
-            <Link to="/">Login</Link>
+            <Link style={{ fontSize: 17 + "px" }} to="/">
+              Login
+            </Link>
           ) : (
-            <Link to="/register">Registrar</Link>
+            <Link style={{ fontSize: 17 + "px" }} to="/register">
+              Registrar
+            </Link>
           )}
         </li>
       </ul>

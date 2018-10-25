@@ -22,13 +22,12 @@ class Posts extends Component {
 
   render() {
     const { posts } = this.props.posts;
-    let treta;
+    let corpo;
 
     if (posts === null) {
-      treta = <h1>Alecrim</h1>;
+      corpo = <h1>Não há postagens..</h1>;
     } else if (posts.length > 0) {
-      posts.reverse();
-      treta = posts.map(post => {
+      corpo = posts.map(post => {
         return (
           <PostItem key={post.dta_post} post={post} cpf={post.mulher_CPF} />
         );
@@ -36,9 +35,9 @@ class Posts extends Component {
     }
     return (
       <Fragment>
-        <PostForm refresh={this.refresh} />
-        <h3 className="center">Depoimentos</h3>
-        <ul>{treta}</ul>
+        <PostForm />
+        <h2 className="center">Depoimentos</h2>
+        <ul>{corpo}</ul>
       </Fragment>
     );
   }

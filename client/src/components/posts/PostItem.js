@@ -40,10 +40,12 @@ class PostItem extends Component {
     }
 
     return (
-      <div className="card z-depth-2">
+      <div className="card z-depth-3">
         <div className="card-content">
-          <div className="card-title">{nomeAutor}</div>
-          <p> {post.descricao}</p>
+          <div style={{ fontSize: 34 + "px" }} className="card-title">
+            <strong> {nomeAutor}</strong>
+          </div>
+          <p style={{ fontSize: 24 + "px" }}>{post.descricao}</p>
           <button
             style={{ backgroundColor: "#662D91" }}
             onClick={this.onToggle}

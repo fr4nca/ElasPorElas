@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { getComentarios } from "../../actions/comentsActions";
 import axios from "axios";
+import ComentForm from "./ComentForm";
+import Coment from "./Coment";
 
 class Coments extends Component {
   state = {
     comentarios: [],
-    toggle: false
+    toggle: false,
+    mulher: ""
   };
 
   async componentWillMount() {
@@ -25,31 +28,54 @@ class Coments extends Component {
     });
   }
 
+  adicionaComentario = comentario => {
+    this.setState({
+      ...this.state,
+      comentarios: [...this.state.comentarios, comentario]
+    });
+  };
+
   render() {
     const { comentarios } = this.state;
     let coments;
     if (comentarios.length > 0) {
       coments = (
         <ul className="collection with-header">
-          <li class="collection-header">
-            <span style={{ fontSize: 18 + "px" }}>Comentários</span>
+          <li className="collection-header">
+            <span style={{ fontSize: 17 + "px" }}>
+              <strong> Comentários</strong>
+            </span>
           </li>
-          {comentarios.map(comentario => (
-            <li
-              key={comentario.dta_comentario}
-              className="collection-item"
-              style={{ fontSize: 13 + "px" }}
-            >
-              {comentario.texto_comentario}
-            </li>
-          ))}
+          {comentarios.map(comentario => {
+            return (
+              <Coment key={comentario.dta_comentario} comentario={comentario} />
+            );
+          })}
         </ul>
       );
     } else {
-      coments = <small>Nenhum comentário</small>;
+      coments = (
+        <ul className="collection with-header">
+          <li className="collection-header">
+            <span style={{ fontSize: 17 + "px" }}>Comentários</span>
+          </li>
+          <li className="collection-item" style={{ fontSize: 15 + "px" }}>
+            Não há comentários..
+          </li>
+        </ul>
+      );
     }
 
-    return <Fragment>{coments}</Fragment>;
+    return (
+      <Fragment>
+        {coments}
+        <ComentForm
+          post_dta={this.props.dta}
+          post_mulher_CPF={this.props.cpf}
+          adicionaComentario={this.adicionaComentario}
+        />
+      </Fragment>
+    );
   }
 }
 

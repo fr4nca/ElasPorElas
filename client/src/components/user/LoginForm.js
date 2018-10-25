@@ -19,11 +19,6 @@ class LoginForm extends Component {
         senha: "",
         error: nextProps.error
       });
-      setTimeout(() => {
-        this.setState({
-          error: ""
-        });
-      }, 2000);
     }
   }
 
@@ -36,7 +31,6 @@ class LoginForm extends Component {
       email,
       senha
     };
-
     this.props.loginUser(user, this.props.history);
   };
 
@@ -64,6 +58,7 @@ class LoginForm extends Component {
                 <div className="input-field">
                   <i className=" fa fa-user-circle prefix" />
                   <input
+                    style={{ fontSize: 20 + "px" }}
                     value={this.state.email}
                     name="email"
                     id="emai"
@@ -72,7 +67,9 @@ class LoginForm extends Component {
                     onChange={this.onChange}
                     required
                   />
-                  <label htmlFor="email">Email</label>
+                  <label style={{ fontSize: 17 + "px" }} htmlFor="email">
+                    Email
+                  </label>
                   <span
                     className="helper-text"
                     data-error="Digite um e-mail válido"
@@ -82,6 +79,7 @@ class LoginForm extends Component {
                 <div className="input-field">
                   <i className="prefix fa fa-key" />
                   <input
+                    style={{ fontSize: 20 + "px" }}
                     value={this.state.senha}
                     name="senha"
                     id="senha"
@@ -90,7 +88,9 @@ class LoginForm extends Component {
                     onChange={this.onChange}
                     required
                   />
-                  <label htmlFor="senha">Senha</label>
+                  <label style={{ fontSize: 17 + "px" }} htmlFor="senha">
+                    Senha
+                  </label>
                 </div>
                 {this.state.error ? (
                   <small className="red-text" style={{ fontSize: 15 + "px" }}>

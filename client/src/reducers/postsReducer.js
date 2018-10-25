@@ -11,12 +11,12 @@ export default (state = initialState, action) => {
     case ADD_POST:
       return {
         ...state,
-        posts: [...state.posts.reverse(), action.payload]
+        posts: [action.payload, ...state.posts]
       };
     case GET_POSTS:
       return {
         ...state,
-        posts: action.payload
+        posts: action.payload.reverse()
       };
     default:
       return state;
