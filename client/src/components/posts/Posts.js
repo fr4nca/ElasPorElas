@@ -6,19 +6,9 @@ import PostItem from "./PostItem";
 import PostForm from "./PostForm";
 
 class Posts extends Component {
-  state = {
-    reload: false
-  };
-
   componentDidMount() {
     this.props.getPosts();
   }
-
-  refresh = () => {
-    this.setState({
-      reload: !this.state.reload
-    });
-  };
 
   render() {
     const { posts } = this.props.posts;

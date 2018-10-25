@@ -15,12 +15,14 @@ class PostItem extends Component {
       mulher: data.data
     });
   }
+
   onToggle = () => {
     this.setState({
       ...this.state,
       toggle: !this.state.toggle
     });
   };
+
   render() {
     const { post } = this.props;
     const { nome } = this.state.mulher;

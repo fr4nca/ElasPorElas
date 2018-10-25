@@ -5,21 +5,28 @@ const query = require("../config/database");
 
 router.post("/register", async (req, res) => {
   try {
-    const { nome, email, CPF, DDD, telefone, senha } = req.body;
+    const {
+      CPF,
+      nome,
+      DDD_telefone,
+      num_telefone,
+      email,
+      link_rede_social,
+      senha
+    } = req.body;
     const hash = await bcrypt.hash(senha, 10);
     query(`SELECT email FROM mulher WHERE email='${email}'`, (err, result) => {
       if (result[0] === undefined) {
-        if (req.body.link) {
-          const { link } = req.body;
-          const qry = `INSERT INTO mulher VALUES ('${CPF}', '${nome}', ${DDD}, ${telefone}, '${email}', '${link}', '${hash}')`;
+        if (req.body.link_rede_social !== "") {
+          const qry = `INSERT INTO mulher VALUES ('${CPF}', '${nome}', ${DDD_telefone}, ${num_telefone}, '${email}', '${link_rede_social}', '${hash}')`;
           query(qry, err => {
             if (err) {
               return res.status(400).send({ error: "Registration failed" });
             }
             return res.status(200).send({ msg: "Registration successfull" });
           });
-        } else if (!req.body.link) {
-          const qry = `INSERT INTO mulher(CPF, nome, DDD_telefone, num_telefone, email,  senha) VALUES ('${CPF}', '${nome}', ${DDD}, ${telefone}, '${email}', '${hash}')`;
+        } else if (req.body.link_rede_social === "") {
+          const qry = `INSERT INTO mulher(CPF, nome, DDD_telefone, num_telefone, email,  senha) VALUES ('${CPF}', '${nome}', ${DDD_telefone}, ${num_telefone}, '${email}', '${hash}')`;
           query(qry, err => {
             if (err) {
               return res.status(400).send({ error: "Registration failed" });

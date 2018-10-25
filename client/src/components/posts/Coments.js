@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { PropTypes } from "prop-types";
-import { getComentarios } from "../../actions/comentsActions";
+
 import axios from "axios";
 import ComentForm from "./ComentForm";
 import Coment from "./Coment";
@@ -9,8 +7,7 @@ import Coment from "./Coment";
 class Coments extends Component {
   state = {
     comentarios: [],
-    toggle: false,
-    mulher: ""
+    toggle: false
   };
 
   async componentWillMount() {
@@ -79,16 +76,4 @@ class Coments extends Component {
   }
 }
 
-Coments.propTypes = {
-  comentarios: PropTypes.object.isRequired,
-  getComentarios: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  comentarios: state.comentarios
-});
-
-export default connect(
-  mapStateToProps,
-  { getComentarios }
-)(Coments);
+export default Coments;

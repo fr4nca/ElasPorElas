@@ -1,5 +1,6 @@
 import { SET_CURRENT_USER } from "./types";
 import { GET_ERROR } from "./types";
+import { REGISTER_USER } from "./types";
 
 import axios from "axios";
 
@@ -29,4 +30,32 @@ export const setCurrentUser = user => {
 
 export const logoutUser = () => dispatch => {
   dispatch(setCurrentUser(null));
+};
+
+export const registerUser = (user, history) => async dispatch => {
+  const {
+    CPF,
+    nome,
+    DDD_telefone,
+    num_telefone,
+    email,
+    link_rede_social,
+    senha
+  } = user;
+
+  await axios.post("http://localhost:5000/auth/register", {
+    CPF,
+    nome,
+    DDD_telefone,
+    num_telefone,
+    email,
+    link_rede_social,
+    senha
+  });
+
+  dispatch({
+    type: REGISTER_USER
+  });
+
+  history.push("/");
 };

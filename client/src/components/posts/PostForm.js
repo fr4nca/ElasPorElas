@@ -9,9 +9,7 @@ class PostForm extends Component {
   state = {
     toggle: false,
     descricao: "",
-    mulher_CPF: "",
-    anonimo: false,
-    msg: ""
+    anonimo: false
   };
 
   toggle = () => {

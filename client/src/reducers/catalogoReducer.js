@@ -1,17 +1,15 @@
-import { ADD_COMENTARIO } from "../actions/types";
+import { GET_CATALOGO } from "../actions/types";
 
 const initialState = {
-  comentario: {}
+  voluntaria: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case ADD_COMENTARIO:
+    case GET_CATALOGO:
       return {
-        ...state,
-        comentario: action.payload
+        voluntaria: action.payload.length > 0 ? true : false
       };
-
     default:
       return state;
   }

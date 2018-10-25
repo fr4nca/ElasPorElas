@@ -8,6 +8,7 @@ import LoginForm from "./components/user/LoginForm";
 import Posts from "./components/posts/Posts";
 import PrivateRoute from "./components/common/PrivateRoute";
 import RegisterForm from "./components/user/RegisterForm";
+import Historico from "./components/ajuda/Historico";
 
 class App extends Component {
   render() {
@@ -21,6 +22,9 @@ class App extends Component {
               <Route exact path="/register" component={RegisterForm} />
               <Switch>
                 <PrivateRoute exact path="/posts" component={Posts} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/historico" component={Historico} />
               </Switch>
             </div>
           </Fragment>

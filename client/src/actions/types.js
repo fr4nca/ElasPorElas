@@ -1,7 +1,10 @@
 export const GET_ERROR = "GET_ERROR";
 export const GET_POSTS = "GET_POSTS";
 export const ADD_POST = "ADD_POST";
+export const ADD_AJUDA = "ADD_AJUDA";
 export const ADD_COMENTARIO = "ADD_COMENTARIO";
-export const GET_MULHER = "GET_MULHER";
-export const GET_COMENTARIOS = "GET_COMENTS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const REGISTER_USER = "REGISTER_USER";
+export const GET_HISTORICO = "GET_HISTORICO";
+export const GET_CATALOGO = "GET_CATALOGO";
+export const FINALIZAR_HISTORICO = "FINALIZAR_HISTORICO";

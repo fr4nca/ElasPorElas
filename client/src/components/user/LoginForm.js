@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import { getCatalogo } from "../../actions/catalogoActions";
 
 class LoginForm extends Component {
   state = {
@@ -12,6 +13,8 @@ class LoginForm extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    this.props.getCatalogo(nextProps.auth.user.CPF);
+
     if (nextProps.error) {
       this.setState({
         ...this.state,
@@ -61,7 +64,7 @@ class LoginForm extends Component {
                     style={{ fontSize: 20 + "px" }}
                     value={this.state.email}
                     name="email"
-                    id="emai"
+                    id="email"
                     type="email"
                     className="validate"
                     onChange={this.onChange}
@@ -122,10 +125,11 @@ LoginForm.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  error: state.error
+  error: state.error,
+  catalogo: state.catalogo
 });
 
 export default connect(
   mapStateToProps,
-  { loginUser }
+  { loginUser, getCatalogo }
 )(withRouter(LoginForm));

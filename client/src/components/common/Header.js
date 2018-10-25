@@ -20,6 +20,11 @@ class Header extends Component {
     const authLinks = (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
+          <Link style={{ fontSize: 17 + "px" }} to="/historico">
+            Histórico
+          </Link>
+        </li>
+        <li>
           <a
             style={{ fontSize: 17 + "px" }}
             href="/"

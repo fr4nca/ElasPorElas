@@ -25,10 +25,10 @@ router.post("/ajuda", (req, res) => {
   }
 });
 
-router.post("/mulher", (req, res) => {
+router.get("/:cpf", (req, res) => {
   try {
-    const { mulher_CPF } = req.body;
-    const qry = `SELECT * FROM catalogo WHERE mulher_CPF = '${mulher_CPF}'`;
+    const { cpf } = req.params;
+    const qry = `SELECT * FROM catalogo WHERE mulher_CPF = '${cpf}'`;
     query(qry, (err, result) => {
       if (err) res.status(400).send({ error: "Something went wrong" });
       result
