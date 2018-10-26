@@ -17,17 +17,13 @@ class Posts extends Component {
     if (posts === null) {
       corpo = <h1>Não há postagens..</h1>;
     } else if (posts.length > 0) {
-      corpo = posts.map(post => {
-        return (
-          <PostItem key={post.dta_post} post={post} cpf={post.mulher_CPF} />
-        );
-      });
+      corpo = posts.map(post => <PostItem key={post.dta_post} post={post} />);
     }
     return (
       <Fragment>
         <PostForm />
         <h2 className="center">Depoimentos</h2>
-        <ul>{corpo}</ul>
+        {corpo}
       </Fragment>
     );
   }

@@ -1,6 +1,11 @@
-import { GET_CATALOGO, GET_MULHERES_CATALOGO } from "../actions/types";
+import {
+  GET_CATALOGO,
+  GET_MULHERES_CATALOGO,
+  GET_VOLUNTARIAS
+} from "../actions/types";
 
 const initialState = {
+  voluntarias: [],
   voluntaria: false,
   mulheres: []
 };
@@ -11,6 +16,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         mulheres: action.payload
+      };
+    case GET_VOLUNTARIAS:
+      return {
+        ...state,
+        voluntarias: action.payload
       };
     case GET_CATALOGO:
       return {

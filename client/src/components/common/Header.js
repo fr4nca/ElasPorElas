@@ -4,11 +4,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { logoutUser } from "../../actions/authActions";
+import { getCatalogo } from "../../actions/catalogoActions";
 
 class Header extends Component {
   state = {
     route: ""
   };
+
+  componentWillMount() {
+    if (this.props.auth.user.CPF)
+      this.props.getCatalogo(this.props.auth.user.CPF);
+  }
 
   onLogoutClick = () => {
     this.props.logoutUser();
@@ -20,8 +26,20 @@ class Header extends Component {
     const authLinks = (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
+          <Link style={{ fontSize: 17 + "px" }} to="/voluntarias">
+            Voluntarias
+          </Link>
+        </li>
+        {this.props.catalogo.voluntaria ? (
+          <li>
+            <Link style={{ fontSize: 17 + "px" }} to="/solicitacoes">
+              Solicitações
+            </Link>
+          </li>
+        ) : null}
+        <li>
           <Link style={{ fontSize: 17 + "px" }} to="/historico">
-            Histórico
+            Ajuda
           </Link>
         </li>
         <li>
@@ -73,12 +91,13 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  catalogo: state.catalogo
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { logoutUser }
+    { logoutUser, getCatalogo }
   )(Header)
 );

@@ -9,6 +9,8 @@ import Posts from "./components/posts/Posts";
 import PrivateRoute from "./components/common/PrivateRoute";
 import RegisterForm from "./components/user/RegisterForm";
 import Historico from "./components/ajuda/Historico";
+import Solicitacoes from "./components/ajuda/Solicitacoes";
+import Voluntarias from "./components/ajuda/Voluntarias";
 
 class App extends Component {
   render() {
@@ -25,6 +27,20 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/historico" component={Historico} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/solicitacoes"
+                  component={Solicitacoes}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/voluntarias"
+                  component={Voluntarias}
+                />
               </Switch>
             </div>
           </Fragment>

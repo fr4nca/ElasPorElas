@@ -52,7 +52,7 @@ class ComentForm extends Component {
             </label>
             <button
               style={{ backgroundColor: "#662D91" }}
-              className="btn btn-small  "
+              className="btn btn-small "
             >
               Comentar
             </button>

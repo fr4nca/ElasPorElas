@@ -6,6 +6,7 @@ import {
 } from "../../actions/historicoActions";
 import moment from "moment";
 import Axios from "axios";
+import { withRouter } from "react-router-dom";
 
 class HistoricoItem extends Component {
   state = {
@@ -27,6 +28,11 @@ class HistoricoItem extends Component {
   }
 
   onClickAceitar = () => {
+    let location =
+      this.props.location.pathname === "/solicitacoes"
+        ? "solicitacoes"
+        : undefined;
+
     const {
       mulher_CPF,
       catalogo_mulher_CPF,
@@ -41,11 +47,17 @@ class HistoricoItem extends Component {
         catalogo_mulher_CPF,
         dta_solicitacao
       },
-      this.props.auth.user.CPF
+      this.props.auth.user.CPF,
+      location
     );
   };
 
   onClickNegar = () => {
+    let location =
+      this.props.location.pathname === "/solicitacoes"
+        ? "solicitacoes"
+        : undefined;
+
     const {
       mulher_CPF,
       catalogo_mulher_CPF,
@@ -58,7 +70,8 @@ class HistoricoItem extends Component {
         catalogo_mulher_CPF,
         dta_solicitacao
       },
-      this.props.auth.user.CPF
+      this.props.auth.user.CPF,
+      location
     );
   };
 
@@ -95,32 +108,38 @@ class HistoricoItem extends Component {
             <div className="col s8">
               <div>
                 <span className="card-title">
-                  Solicitante: {this.props.historico.solicitante}
+                  Solicitante: {historico.solicitante}
                 </span>
                 <span>Tipo de ajuda: {historico.especialidade}</span>
                 {historico.cancelada.data[0] === 1 ? (
                   <p>Cancelada</p>
                 ) : historico.dta_aceite === null ? (
                   <div>
-                    <button
-                      name="aceitar"
-                      onClick={this.onClickAceitar}
-                      style={{ backgroundColor: "#710090" }}
-                      className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
-                    >
-                      <i className="fa fa-check" />
-                    </button>
-                    <button
-                      name="negar"
-                      onClick={this.onClickNegar}
-                      style={{
-                        backgroundColor: "#710090",
-                        marginRight: 46 + "px"
-                      }}
-                      className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
-                    >
-                      <i className="fa fa-times" />
-                    </button>
+                    {this.props.location.pathname === "/solicitacoes" ? (
+                      <div>
+                        <button
+                          name="aceitar"
+                          onClick={this.onClickAceitar}
+                          style={{ backgroundColor: "#710090" }}
+                          className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
+                        >
+                          <i className="fa fa-check" />
+                        </button>
+                        <button
+                          name="negar"
+                          onClick={this.onClickNegar}
+                          style={{
+                            backgroundColor: "#710090",
+                            marginRight: 46 + "px"
+                          }}
+                          className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
+                        >
+                          <i className="fa fa-times" />
+                        </button>
+                      </div>
+                    ) : (
+                      <p>Pendente</p>
+                    )}
                   </div>
                 ) : (
                   <div>
@@ -141,12 +160,13 @@ class HistoricoItem extends Component {
               </span>
               <span>Tipo de ajuda: {historico.especialidade}</span>
               <div>
-                {historico.dta_aceite === null ? (
+                {historico.cancelada.data[0] === 1 ? (
+                  <p>Cancelada</p>
+                ) : historico.dta_aceite === null ? (
                   <p>Pendente</p>
                 ) : (
                   <p>Finalizado</p>
                 )}
-                {historico.cancelada === true ? <p>Cancelada</p> : null}
               </div>
             </div>
             {historico.dta_aceite === null ? null : this.renderContato()}
@@ -162,12 +182,15 @@ class HistoricoItem extends Component {
             </span>
             <span>Tipo de ajuda: {historico.especialidade}</span>
             <div>
-              {historico.dta_aceite === null ? (
-                <p>Pendente</p>
-              ) : (
-                <p>Finalizado</p>
-              )}
-              {historico.cancelada === true ? <p>Cancelada</p> : null}
+              {historico.cancelada ? (
+                historico.cancelada.data[0] === 1 ? (
+                  <p>Cancelada</p>
+                ) : historico.dta_aceite === null ? (
+                  <p>Pendente</p>
+                ) : (
+                  <p>Finalizado</p>
+                )
+              ) : null}
             </div>
           </div>
           {historico.dta_aceite === null ? null : this.renderContato()}
@@ -190,7 +213,9 @@ const mapStateToProps = state => ({
   historico1: state.historico
 });
 
-export default connect(
-  mapStateToProps,
-  { finalizarHistorico, aceitarHistorico }
-)(HistoricoItem);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { finalizarHistorico, aceitarHistorico }
+  )(HistoricoItem)
+);

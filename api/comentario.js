@@ -24,7 +24,7 @@ router.post("/add", (req, res) => {
 router.post("/getComentarios", (req, res) => {
   try {
     const { post_dta, post_mulher_CPF } = req.body;
-    const qry = `SELECT * FROM comentario WHERE post_dta_post = '${post_dta}' and post_mulher_CPF = '${post_mulher_CPF}'`;
+    const qry = `SELECT c.*, m.nome FROM comentario c INNER JOIN mulher m ON c.mulher_CPF = m.CPF WHERE post_dta_post = '${post_dta}' and post_mulher_CPF = '${post_mulher_CPF} '`;
     query(qry, (err, result) => {
       if (err) return res.status(400).send({ error: "Something went wrong" });
       result

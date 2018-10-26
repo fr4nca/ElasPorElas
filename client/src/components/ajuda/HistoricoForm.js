@@ -130,10 +130,14 @@ class AjudaForm extends Component {
             marginBottom: 15 + "px",
             marginTop: 15 + "px"
           }}
-          className="btn-floating btn-large waves-effect waves-light right"
+          className="btn waves-effect waves-light right"
           onClick={this.onToggle}
         >
-          <i className={this.state.toggle ? "fa fa-times" : "fa fa-plus"} />
+          {!this.state.toggle ? (
+            <span>Solicitar ajuda</span>
+          ) : (
+            <span>Fechar</span>
+          )}
         </button>
         {this.state.toggle ? this.form() : null}
       </div>

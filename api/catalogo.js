@@ -3,10 +3,12 @@ const router = express.Router();
 const query = require("../config/database");
 
 router.get("/", (req, res) => {
-  const qry = `SELECT * FROM catalogo;`;
-  query(qry, (err, catalogo) => {
-    if (err) throw err;
-    res.send(catalogo);
+  const qry = `SELECT * FROM voluntarias;`;
+  query(qry, (err, voluntarias) => {
+    if (err) res.status(400).send({ error: "Something went wrong" });
+    voluntarias
+      ? res.status(200).send(voluntarias)
+      : res.status(400).send({ error: "Something went wrong" });
   });
 });
 

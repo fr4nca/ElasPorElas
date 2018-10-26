@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getHistorico } from "../../actions/historicoActions";
+import { PropTypes } from "prop-types";
+import { getSolicitacoes } from "../../actions/historicoActions";
 import HistoricoItem from "./HistoricoItem";
-import HistoricoForm from "./HistoricoForm";
 
-class Historico extends Component {
+class Solicitacoes extends Component {
   componentWillMount() {
-    this.props.getHistorico(this.props.auth.user.CPF);
+    if (this.props.auth.user.CPF)
+      this.props.getSolicitacoes(this.props.auth.user.CPF);
   }
 
   render() {
     let render;
+
     if (this.props.historico.historico.length > 0) {
       render = this.props.historico.historico.map(historico => (
         <HistoricoItem
@@ -23,18 +25,23 @@ class Historico extends Component {
         />
       ));
     } else {
-      render = <h3>Não há ajudas</h3>;
+      render = <h3>Não há solicitações</h3>;
     }
 
     return (
       <div style={{ width: 1000 + "px" }} className="container">
-        <HistoricoForm />
-        <h2>Histórico de ajuda</h2>
+        <h2 className="center">Solicitações</h2>
         {render}
       </div>
     );
   }
 }
+
+Solicitacoes.propTypes = {
+  auth: PropTypes.object.isRequired,
+  historico: PropTypes.object.isRequired,
+  getSolicitacoes: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   auth: state.auth,
@@ -43,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getHistorico }
-)(Historico);
+  { getSolicitacoes }
+)(Solicitacoes);
