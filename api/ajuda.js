@@ -13,4 +13,14 @@ router.post("/register", (req, res) => {
   });
 });
 
+router.get("/", (req, res) => {
+  const qry = "SELECT * FROM ajuda";
+  query(qry, (err, result) => {
+    if (err) res.status(400).send({ error: "Registration failed" });
+    result
+      ? res.status(200).send(result)
+      : res.status(400).send({ error: "Something went wrong" });
+  });
+});
+
 module.exports = router;

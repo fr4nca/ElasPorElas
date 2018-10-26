@@ -25,6 +25,21 @@ router.post("/ajuda", (req, res) => {
   }
 });
 
+router.get("/mulheres/:id", (req, res) => {
+  const { id } = req.params;
+  const qry = `SELECT * FROM mulher INNER JOIN catalogo ON mulher.CPF = catalogo.mulher_CPF where catalogo.ajuda_ID_ajuda1 = '${id}'`;
+  query(qry, (err, result) => {
+    try {
+      if (err) res.status(400).send({ error: "Something went wrong" });
+      result
+        ? res.status(200).send(result)
+        : res.status(400).send({ error: "Mulher não cadastrada" });
+    } catch (e) {
+      res.status(400).send({ error: "Something went wrong" });
+    }
+  });
+});
+
 router.get("/:cpf", (req, res) => {
   try {
     const { cpf } = req.params;

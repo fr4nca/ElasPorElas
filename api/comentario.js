@@ -11,7 +11,6 @@ router.post("/add", (req, res) => {
       texto_comentario,
       dta_comentario
     } = req.body;
-    console.log(req.body);
     const qry = `INSERT INTO comentario VALUES('${dta_comentario}', '${post_mulher_CPF}', '${mulher_CPF}', '${texto_comentario}','${post_dta}')`;
     query(qry, err => {
       if (err) res.status(400).send({ error: "Something went wrong" });

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getHistorico } from "../../actions/historicoActions";
 import HistoricoItem from "./HistoricoItem";
+import HistoricoForm from "./HistoricoForm";
 
 class Historico extends Component {
   componentWillMount() {
@@ -26,7 +27,8 @@ class Historico extends Component {
     }
 
     return (
-      <div>
+      <div style={{ width: 1000 + "px" }} className="container">
+        <HistoricoForm />
         <h2 className="center">Histórico</h2>
         {cu}
       </div>

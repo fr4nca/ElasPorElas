@@ -1,4 +1,4 @@
-import { ADD_AJUDA } from "./types";
+import { ADD_AJUDA, GET_AJUDAS } from "./types";
 
 import axios from "axios";
 
@@ -10,5 +10,13 @@ export const addAjuda = (ajuda, CPF) => async dispatch => {
 
   dispatch({
     type: ADD_AJUDA
+  });
+};
+
+export const getAjudas = () => async dispatch => {
+  const ajudas = await axios.get("http://localhost:5000/ajuda/");
+  dispatch({
+    type: GET_AJUDAS,
+    payload: ajudas.data
   });
 };

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { finalizarHistorico } from "../../actions/historicoActions";
+import {
+  finalizarHistorico,
+  aceitarHistorico
+} from "../../actions/historicoActions";
 import moment from "moment";
 import Axios from "axios";
 
@@ -13,9 +16,10 @@ class HistoricoItem extends Component {
     let cpf =
       this.props.historico.mulher_CPF === this.props.auth.user.CPF
         ? this.props.historico.catalogo_mulher_CPF
-        : this.props.auth.user.CPF;
+        : this.props.historico.mulher_CPF;
 
     const mulher = await Axios.get(`http://localhost:5000/mulher/${cpf}`);
+
     this.setState({
       ...this.state,
       mulher: mulher.data
@@ -28,11 +32,28 @@ class HistoricoItem extends Component {
       catalogo_mulher_CPF,
       dta_solicitacao
     } = this.props.historico;
-    this.props.finalizarHistorico(
+    this.props.aceitarHistorico(
       {
         dta_aceite: moment()
           .parseZone()
           .format("YYYY-MM-DD HH:mm:ss"),
+        mulher_CPF,
+        catalogo_mulher_CPF,
+        dta_solicitacao
+      },
+      this.props.auth.user.CPF
+    );
+  };
+
+  onClickNegar = () => {
+    const {
+      mulher_CPF,
+      catalogo_mulher_CPF,
+      dta_solicitacao
+    } = this.props.historico;
+    this.props.finalizarHistorico(
+      {
+        cancelada: true,
         mulher_CPF,
         catalogo_mulher_CPF,
         dta_solicitacao
@@ -48,7 +69,7 @@ class HistoricoItem extends Component {
         <p>Contato: </p>
         <ul className="collection">
           <li className="collection-item">
-            (<span>{mulher.DDD_telefone}</span>){" "}
+            (<span>{mulher.DDD_telefone}</span>)
             <span>{mulher.num_telefone}</span>
           </li>
           <li className="collection-item">
@@ -77,7 +98,9 @@ class HistoricoItem extends Component {
                   Solicitante: {this.props.historico.solicitante}
                 </span>
                 <span>Tipo de ajuda: {historico.especialidade}</span>
-                {historico.dta_aceite === null ? (
+                {historico.cancelada.data[0] === 1 ? (
+                  <p>Cancelada</p>
+                ) : historico.dta_aceite === null ? (
                   <div>
                     <button
                       name="aceitar"
@@ -123,16 +146,36 @@ class HistoricoItem extends Component {
                 ) : (
                   <p>Finalizado</p>
                 )}
+                {historico.cancelada === true ? <p>Cancelada</p> : null}
               </div>
             </div>
             {historico.dta_aceite === null ? null : this.renderContato()}
           </div>
         );
       }
+    } else if (!catalogo.voluntaria) {
+      render = (
+        <div className="row">
+          <div className="col s8">
+            <span className="card-title">
+              Voluntária: {historico.voluntaria}
+            </span>
+            <span>Tipo de ajuda: {historico.especialidade}</span>
+            <div>
+              {historico.dta_aceite === null ? (
+                <p>Pendente</p>
+              ) : (
+                <p>Finalizado</p>
+              )}
+              {historico.cancelada === true ? <p>Cancelada</p> : null}
+            </div>
+          </div>
+          {historico.dta_aceite === null ? null : this.renderContato()}
+        </div>
+      );
     }
-
     return (
-      <div style={{ width: 1000 + "px" }} className="row">
+      <div className="row">
         <div className="card z-depth-3">
           <div className="card-content">{render}</div>
         </div>
@@ -149,5 +192,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { finalizarHistorico }
+  { finalizarHistorico, aceitarHistorico }
 )(HistoricoItem);

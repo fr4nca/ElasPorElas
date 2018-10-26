@@ -30,6 +30,30 @@ router.get("/", (req, res) => {
   }
 });
 
+router.get("/posts/:cpf", (req, res) => {
+  const { cpf } = req.params;
+  const qry = `SELECT p.*, c.* FROM post p INNER JOIN comentario c ON c.post_dta_post = p.dta_post where p.mulher_CPF='${cpf}';`;
+  query(qry, (err, result) => {
+    if (err) res.status(400).send({ error: "Something went wrong" });
+
+    // let posts = [];
+
+    // result.forEach(post => {
+    //   let newPost = {
+    //     ...post,
+    //     dta_post: moment(post.dta_post)
+    //       .parseZone()
+    //       .format("YYYY-MM-DD HH:mm:ss")
+    //   };
+    //   posts.push(newPost);
+    // });
+
+    result
+      ? res.status(200).send(result)
+      : res.status(400).send({ error: "Something went wrong" });
+  });
+});
+
 router.post("/add", (req, res) => {
   const { mulher_CPF, descricao, anonimo, dta_post } = req.body;
   const qry = `INSERT INTO post VALUES('${dta_post}', '${mulher_CPF}', '${descricao}', ${anonimo})`;

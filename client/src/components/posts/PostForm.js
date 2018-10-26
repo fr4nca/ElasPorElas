@@ -42,7 +42,16 @@ class PostForm extends Component {
       descricao,
       anonimo
     };
-
+    setTimeout(
+      () =>
+        this.setState({
+          ...this.state,
+          toggle: false,
+          descricao: "",
+          anonimo: false
+        }),
+      50
+    );
     this.props.addPost(post);
   };
 
