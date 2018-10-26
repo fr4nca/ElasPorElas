@@ -20,6 +20,10 @@ app.use("/post", require("./api/post"));
 app.use("/catalogo", require("./api/catalogo"));
 app.use("/historico", require("./api/historico"));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
 const port = 5000 || process.env.PORT;
 
 app.listen(port, () => {
