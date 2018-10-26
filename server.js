@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const path = require("path");
 
 const app = express();
@@ -8,7 +7,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "client/build")));
 
 //Middlewares
-app.use(cors());
+process.env.NODE_ENV === "development" ? app.use(require("cors")()) : null;
 app.use(bodyParser.json());
 
 //Routes
