@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Logo from "./Logo";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
@@ -48,10 +49,10 @@ class LoginForm extends Component {
     return (
       <div className="row ">
         <div className="col s4 offset-s4">
+          <Logo className="center col" />
           <div
             style={{
               height: 296 + "px",
-              marginTop: 30 + "%",
               fontSize: 40 + "px"
             }}
             className="card z-depth-3"

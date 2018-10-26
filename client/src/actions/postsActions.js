@@ -3,7 +3,7 @@ import { ADD_POST } from "./types";
 import axios from "axios";
 
 export const getPosts = () => async dispatch => {
-  const posts = await axios.get("http://localhost:5000/post/");
+  const posts = await axios.get("/post/");
   dispatch({
     type: GET_POSTS,
     payload: posts.data
@@ -12,7 +12,7 @@ export const getPosts = () => async dispatch => {
 
 export const addPost = post => async dispatch => {
   const { dta_post, mulher_CPF, descricao, anonimo } = post;
-  await axios.post("http://localhost:5000/post/add", {
+  await axios.post("/post/add", {
     dta_post,
     mulher_CPF,
     descricao,

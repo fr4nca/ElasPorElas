@@ -10,7 +10,7 @@ export const addComentario = comentario => async dispatch => {
     dta_comentario
   } = comentario;
 
-  await axios.post("http://localhost:5000/comentario/add", {
+  await axios.post("/comentario/add", {
     post_dta,
     mulher_CPF,
     post_mulher_CPF,

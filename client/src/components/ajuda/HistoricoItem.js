@@ -19,7 +19,7 @@ class HistoricoItem extends Component {
         ? this.props.historico.catalogo_mulher_CPF
         : this.props.historico.mulher_CPF;
 
-    const mulher = await Axios.get(`http://localhost:5000/mulher/${cpf}`);
+    const mulher = await Axios.get(`/mulher/${cpf}`);
 
     this.setState({
       ...this.state,

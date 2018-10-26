@@ -12,13 +12,10 @@ class Coments extends Component {
 
   async componentWillMount() {
     const { cpf } = this.props;
-    const comentarios = await axios.post(
-      "http://localhost:5000/comentario/getComentarios",
-      {
-        post_dta: this.props.dta,
-        post_mulher_CPF: cpf
-      }
-    );
+    const comentarios = await axios.post("/comentario/getComentarios", {
+      post_dta: this.props.dta,
+      post_mulher_CPF: cpf
+    });
     this.setState({
       ...this.state,
       comentarios: comentarios.data

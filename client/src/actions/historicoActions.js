@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 
 export const getHistorico = cpf => async dispatch => {
-  const historico = await axios.get(`http://localhost:5000/historico/${cpf}`);
+  const historico = await axios.get(`/historico/${cpf}`);
 
   dispatch({
     type: GET_HISTORICO,
@@ -17,9 +17,7 @@ export const getHistorico = cpf => async dispatch => {
 };
 
 export const getSolicitacoes = cpf => async dispatch => {
-  const historico = await axios.get(
-    `http://localhost:5000/historico/solicitacoes/${cpf}`
-  );
+  const historico = await axios.get(`/historico/solicitacoes/${cpf}`);
 
   dispatch({
     type: GET_SOLICITACOES,
@@ -35,7 +33,7 @@ export const addHistorico = (historico, cpf) => async dispatch => {
     catalogo_ajuda_ID_ajuda1
   } = historico;
 
-  await axios.post("http://localhost:5000/historico/add", {
+  await axios.post("/historico/add", {
     dta_solicitacao,
     mulher_CPF,
     catalogo_mulher_CPF,
@@ -60,7 +58,7 @@ export const finalizarHistorico = (
     catalogo_mulher_CPF,
     dta_solicitacao
   } = historico;
-  const data = await axios.post("http://localhost:5000/historico/finalizar", {
+  const data = await axios.post("/historico/finalizar", {
     cancelada,
     mulher_CPF,
     catalogo_mulher_CPF,
@@ -88,7 +86,7 @@ export const aceitarHistorico = (
     catalogo_mulher_CPF,
     dta_solicitacao
   } = historico;
-  const data = await axios.post("http://localhost:5000/historico/aceitar", {
+  const data = await axios.post("/historico/aceitar", {
     dta_aceite,
     mulher_CPF,
     catalogo_mulher_CPF,
