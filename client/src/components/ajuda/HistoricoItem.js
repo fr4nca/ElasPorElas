@@ -104,64 +104,68 @@ class HistoricoItem extends Component {
     if (catalogo.voluntaria) {
       if (historico.voluntaria === auth.user.nome) {
         render = (
-          <div>
-            <span className="card-title">
-              Solicitante: {historico.solicitante}
-            </span>
-            <span>Tipo de ajuda: {historico.especialidade}</span>
-            {historico.cancelada.data[0] === 1 ? (
-              <p>Cancelada</p>
-            ) : historico.dta_aceite === null ? (
-              <div>
-                {this.props.location.pathname === "/solicitacoes" ? (
-                  <div>
-                    <button
-                      name="aceitar"
-                      onClick={this.onClickAceitar}
-                      style={{ backgroundColor: "#710090" }}
-                      className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
-                    >
-                      <i className="fa fa-check" />
-                    </button>
-                    <button
-                      name="negar"
-                      onClick={this.onClickNegar}
-                      style={{
-                        backgroundColor: "#710090",
-                        marginRight: 46 + "px"
-                      }}
-                      className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
-                    >
-                      <i className="fa fa-times" />
-                    </button>
-                  </div>
-                ) : (
-                  <p>Pendente</p>
-                )}
-              </div>
-            ) : (
-              <div>
-                <p>Finalizado</p>
-              </div>
-            )}
+          <div className="row">
+            <div className="col s6 m8 l8">
+              <span className="card-title">
+                Solicitante: {historico.solicitante}
+              </span>
+              <span>Tipo de ajuda: {historico.especialidade}</span>
+              {historico.cancelada.data[0] === 1 ? (
+                <p>Cancelada</p>
+              ) : historico.dta_aceite === null ? (
+                <div>
+                  {this.props.location.pathname === "/solicitacoes" ? (
+                    <div>
+                      <button
+                        name="aceitar"
+                        onClick={this.onClickAceitar}
+                        style={{ backgroundColor: "#710090" }}
+                        className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
+                      >
+                        <i className="fa fa-check" />
+                      </button>
+                      <button
+                        name="negar"
+                        onClick={this.onClickNegar}
+                        style={{
+                          backgroundColor: "#710090",
+                          marginRight: 46 + "px"
+                        }}
+                        className="btn btn-floating btn-small halfway-fab waves-effect waves-light"
+                      >
+                        <i className="fa fa-times" />
+                      </button>
+                    </div>
+                  ) : (
+                    <p>Pendente</p>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <p>Finalizado</p>
+                </div>
+              )}
+            </div>
             {historico.dta_aceite === null ? null : this.renderContato()}
           </div>
         );
       } else if (historico.solicitante === auth.user.nome) {
         render = (
-          <div>
-            <span className="card-title">
-              Voluntária: {historico.voluntaria}
-            </span>
-            <span>Tipo de ajuda: {historico.especialidade}</span>
-            <div>
-              {historico.cancelada.data[0] === 1 ? (
-                <p>Cancelada</p>
-              ) : historico.dta_aceite === null ? (
-                <p>Pendente</p>
-              ) : (
-                <p>Finalizado</p>
-              )}
+          <div className="row">
+            <div className="col s6 m8 l8">
+              <span className="card-title">
+                Voluntária: {historico.voluntaria}
+              </span>
+              <span>Tipo de ajuda: {historico.especialidade}</span>
+              <div>
+                {historico.cancelada.data[0] === 1 ? (
+                  <p>Cancelada</p>
+                ) : historico.dta_aceite === null ? (
+                  <p>Pendente</p>
+                ) : (
+                  <p>Finalizado</p>
+                )}
+              </div>
             </div>
             {historico.dta_aceite === null ? null : this.renderContato()}
           </div>
@@ -169,27 +173,33 @@ class HistoricoItem extends Component {
       }
     } else if (!catalogo.voluntaria) {
       render = (
-        <div>
-          <span className="card-title">Voluntária: {historico.voluntaria}</span>
-          <span>Tipo de ajuda: {historico.especialidade}</span>
-          <div>
-            {historico.cancelada ? (
-              historico.cancelada.data[0] === 1 ? (
-                <p>Cancelada</p>
-              ) : historico.dta_aceite === null ? (
-                <p>Pendente</p>
-              ) : (
-                <p>Finalizado</p>
-              )
-            ) : null}
+        <div className="row">
+          <div className="col s6 m8 l8">
+            <div>
+              <span className="card-title">
+                Voluntária: {historico.voluntaria}
+              </span>
+              <span>Tipo de ajuda: {historico.especialidade}</span>
+              <div>
+                {historico.cancelada ? (
+                  historico.cancelada.data[0] === 1 ? (
+                    <p>Cancelada</p>
+                  ) : historico.dta_aceite === null ? (
+                    <p>Pendente</p>
+                  ) : (
+                    <p>Finalizado</p>
+                  )
+                ) : null}
+              </div>
+            </div>
+            {historico.dta_aceite === null ? null : this.renderContato()}
           </div>
-          {historico.dta_aceite === null ? null : this.renderContato()}
         </div>
       );
     }
     return (
       <div className="row">
-        <div className="col s4 m9 l12">
+        <div className="col s6 m9 l12">
           <div className="card z-depth-3">
             <div className="card-content">{render}</div>
           </div>
