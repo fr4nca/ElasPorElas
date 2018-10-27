@@ -40,7 +40,8 @@ class PostForm extends Component {
         .format("YYYY-MM-DD HH:mm:ss"),
       mulher_CPF: cpf,
       descricao,
-      anonimo
+      anonimo,
+      nome: this.props.auth.user.nome
     };
     setTimeout(
       () =>

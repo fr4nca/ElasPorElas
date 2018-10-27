@@ -15,15 +15,6 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.props.getCatalogo(nextProps.auth.user.CPF);
-
-    if (nextProps.error) {
-      this.setState({
-        ...this.state,
-        email: "",
-        senha: "",
-        error: nextProps.error
-      });
-    }
   }
 
   onSubmit = async e => {
@@ -36,6 +27,10 @@ class LoginForm extends Component {
       senha
     };
     this.props.loginUser(user, this.props.history);
+    this.setState({
+      email: "",
+      senha: ""
+    });
   };
 
   onChange = e => {
@@ -47,8 +42,8 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="row ">
-        <div className="col s4 offset-s4">
+      <div className="row">
+        <div className="col s12 m10 l4 offset-m1 offset-l4">
           <Logo className="center col" />
           <div
             style={{
@@ -120,13 +115,11 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  error: state.error,
   catalogo: state.catalogo
 });
 

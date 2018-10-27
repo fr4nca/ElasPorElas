@@ -81,7 +81,7 @@ class RegisterForm extends Component {
     return (
       <div style={{ width: 700 + "px" }} className="row">
         <h2 className="center">Registrar</h2>
-        <div className="card z-depth-3 col s12">
+        <div className="card z-depth-3 col s8 m10 l12">
           <div className="card-content">
             <form onSubmit={this.onSubmit}>
               <div className="input-field">

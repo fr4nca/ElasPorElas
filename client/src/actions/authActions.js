@@ -39,7 +39,6 @@ export const registerUser = (user, history) => async dispatch => {
     link_rede_social,
     senha
   } = user;
-  console.log("registra");
   await axios.post("/api/auth/register", {
     CPF,
     nome,

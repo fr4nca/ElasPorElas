@@ -30,7 +30,6 @@ class PostItem extends Component {
         nomeAutor = post.nome;
       }
     }
-
     return (
       <div style={{ marginBottom: 30 + "px" }} className="card z-depth-3">
         <div className="card-content">

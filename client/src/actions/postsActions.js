@@ -18,8 +18,9 @@ export const addPost = post => async dispatch => {
     descricao,
     anonimo
   });
+
   dispatch({
     type: ADD_POST,
-    payload: post
+    payload: { ...post, nome: post.nome }
   });
 };
