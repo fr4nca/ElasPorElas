@@ -12,9 +12,9 @@ const store = createStore(
   compose(
     applyMiddleware(...middleware),
     process.env.NODE_ENV !== "production"
-      ? null
-      : window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__()
+      : null
   )
 );
 
