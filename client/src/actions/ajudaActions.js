@@ -3,6 +3,7 @@ import { ADD_AJUDA, GET_AJUDAS } from "./types";
 import axios from "axios";
 
 export const addAjuda = (ajuda, CPF) => async dispatch => {
+  console.log(ajuda, CPF);
   await axios.post("/api/ajuda/register", {
     CPF,
     ajuda
