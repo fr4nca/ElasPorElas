@@ -3,6 +3,16 @@ const router = express.Router();
 const query = require("../config/database");
 const moment = require("moment");
 
+router.get("/adm", (req, res) => {
+  const qry = "SELECT * FROM ajudas";
+  query(qry, (err, result) => {
+    if (err) res.status(400).send({ error: "Something went wrong" });
+    result
+      ? res.status(200).send(result)
+      : res.status(400).send({ error: "Something went wrong" });
+  });
+});
+
 router.post("/add", (req, res) => {
   const {
     dta_solicitacao,
@@ -21,7 +31,7 @@ router.post("/add", (req, res) => {
 
 router.get("/solicitacoes/:cpf", (req, res) => {
   const { cpf } = req.params;
-  const qry = `select h.*, m.nome as voluntaria, m2.nome as solicitante, a.especialidade from historico h inner join mulher m on h.catalogo_mulher_CPF = m.CPF inner join mulher m2 on h.mulher_CPF = m2.CPF inner join ajuda a on h.catalogo_ajuda_ID_ajuda1 = a.ID_ajuda where dta_aceite is null and cancelada = 0 and h.catalogo_mulher_CPF = '${cpf}' order by dta_solicitacao DESC;`;
+  const qry = `select * from ajudas where dta_aceite is null and cancelada = 0 and catalogo_mulher_CPF = '${cpf}' order by dta_solicitacao DESC;`;
   query(qry, (err, result) => {
     if (err) return res.status(400).send({ error: "Something went wrong" });
     let historicos = [];
@@ -44,7 +54,7 @@ router.get("/solicitacoes/:cpf", (req, res) => {
 
 router.get("/:cpf", (req, res) => {
   const { cpf } = req.params;
-  const qry = `select h.*, m.nome as voluntaria, m2.nome as solicitante, a.especialidade from historico h inner join mulher m on h.catalogo_mulher_CPF = m.CPF inner join mulher m2 on h.mulher_CPF = m2.CPF inner join ajuda a on h.catalogo_ajuda_ID_ajuda1 = a.ID_ajuda where h.mulher_CPF = '${cpf}' or h.catalogo_mulher_CPF = '${cpf}' order by dta_solicitacao DESC`;
+  const qry = `select * from ajudas where mulher_CPF = '${cpf}' or catalogo_mulher_CPF = '${cpf}' order by dta_solicitacao DESC`;
   query(qry, (err, result) => {
     if (err) return res.status(400).send({ error: "Something went wrong" });
     let historicos = [];

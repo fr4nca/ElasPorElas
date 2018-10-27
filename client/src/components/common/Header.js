@@ -22,9 +22,19 @@ class Header extends Component {
 
   render() {
     const { isLoggedIn } = this.props.auth;
+    const { adm } = this.props.auth.user;
 
     const authLinks = (
       <ul id="nav-mobile" className="right">
+        {adm ? (
+          adm.data[0] === 1 ? (
+            <li>
+              <Link style={{ fontSize: 17 + "px" }} to="/ajudas">
+                Relatório de ajudas
+              </Link>
+            </li>
+          ) : null
+        ) : null}
         <li>
           <Link style={{ fontSize: 17 + "px" }} to="/voluntarias">
             Voluntarias

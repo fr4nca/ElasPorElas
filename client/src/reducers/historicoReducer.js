@@ -3,15 +3,21 @@ import {
   FINALIZAR_HISTORICO,
   ACEITAR_HISTORICO,
   ADD_HISTORICO,
-  GET_SOLICITACOES
+  GET_SOLICITACOES,
+  GET_HISTORICO_ADM
 } from "../actions/types";
 
 const initialState = {
-  historico: []
+  historico: [],
+  historicoAdm: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case GET_HISTORICO_ADM:
+      return {
+        historicoAdm: action.payload
+      };
     case ADD_HISTORICO:
       return {
         historico: [action.payload, ...state.historico]

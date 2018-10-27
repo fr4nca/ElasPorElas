@@ -3,7 +3,8 @@ import {
   GET_HISTORICO,
   FINALIZAR_HISTORICO,
   ACEITAR_HISTORICO,
-  GET_SOLICITACOES
+  GET_SOLICITACOES,
+  GET_HISTORICO_ADM
 } from "./types";
 import axios from "axios";
 
@@ -12,6 +13,14 @@ export const getHistorico = cpf => async dispatch => {
 
   dispatch({
     type: GET_HISTORICO,
+    payload: historico.data
+  });
+};
+
+export const getHistoricoAdm = () => async dispatch => {
+  const historico = await axios.get(`/api/historico/adm`);
+  dispatch({
+    type: GET_HISTORICO_ADM,
     payload: historico.data
   });
 };
