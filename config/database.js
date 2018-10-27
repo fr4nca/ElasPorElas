@@ -4,7 +4,6 @@ const dbKeys = require("./keys");
 const con = mysql.createConnection(
   process.env.NODE_ENV !== "production" ? dbKeys.localDB : dbKeys.db
 );
-
 con.connect(() => {
   console.log("Database connected");
 });

@@ -7,17 +7,17 @@ const app = express();
 app.use(express.static(path.join(__dirname, "client/build")));
 
 //Middlewares
-process.env.NODE_ENV === "development" ? app.use(require("cors")()) : null;
+process.env.NODE_ENV !== "production" ? app.use(require("cors")()) : null;
 app.use(bodyParser.json());
 
 //Routes
-app.use("/auth", require("./api/auth"));
-app.use("/mulher", require("./api/mulher"));
-app.use("/comentario", require("./api/comentario"));
-app.use("/ajuda", require("./api/ajuda"));
-app.use("/post", require("./api/post"));
-app.use("/catalogo", require("./api/catalogo"));
-app.use("/historico", require("./api/historico"));
+app.use("/api/auth", require("./api/auth"));
+app.use("/api/mulher", require("./api/mulher"));
+app.use("/api/comentario", require("./api/comentario"));
+app.use("/api/ajuda", require("./api/ajuda"));
+app.use("/api/post", require("./api/post"));
+app.use("/api/catalogo", require("./api/catalogo"));
+app.use("/api/historico", require("./api/historico"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));

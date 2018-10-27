@@ -5,7 +5,7 @@ import { REGISTER_USER } from "./types";
 import axios from "axios";
 
 export const loginUser = (userData, history) => async dispatch => {
-  const data = await axios.post("/auth/authenticate", userData);
+  const data = await axios.post("/api/auth/authenticate", userData);
 
   if (!data.data.error) {
     dispatch(setCurrentUser(data.data));
@@ -40,7 +40,7 @@ export const registerUser = (user, history) => async dispatch => {
     senha
   } = user;
 
-  await axios.post("/auth/register", {
+  await axios.post("/api/auth/register", {
     CPF,
     nome,
     DDD_telefone,
