@@ -25,9 +25,11 @@ class Voluntarias extends Component {
     }
 
     return (
-      <div style={{ width: 600 + "px" }} className="container">
-        <h2 className="center">Voluntárias</h2>
-        {render}
+      <div className="container">
+        <div className="col s1 m9 l4">
+          <h2 className="center">Voluntárias</h2>
+          {render}
+        </div>
       </div>
     );
   }

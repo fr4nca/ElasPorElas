@@ -24,7 +24,7 @@ class Header extends Component {
     const { isLoggedIn } = this.props.auth;
 
     const authLinks = (
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul id="nav-mobile" className="right">
         <li>
           <Link style={{ fontSize: 17 + "px" }} to="/voluntarias">
             Voluntarias
@@ -55,7 +55,7 @@ class Header extends Component {
     );
 
     const guestLinks = (
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul id="nav-mobile" className="right">
         <li>
           {this.props.location.pathname === "/register" ? (
             <Link style={{ fontSize: 17 + "px" }} to="/">
@@ -71,13 +71,24 @@ class Header extends Component {
     );
 
     return (
-      <div className="navbar-fixed z-depth-3">
+      <div>
         <nav style={{ backgroundColor: "#662D91" }}>
-          <div className="nav-wrapper container ">
-            <Link to="/posts" className="brand-logo">
-              Elas por elas
-            </Link>
-            {isLoggedIn ? authLinks : guestLinks}
+          <div className="navbar-fixed z-depth-3">
+            <div className="nav-wrapper container">
+              <Link to="/posts" className="brand-logo left hide-on-med-and-up">
+                <img
+                  style={{ marginTop: 4 + "px" }}
+                  src="logo.png"
+                  width="39,2706468"
+                  height="48,3267708"
+                  alt="logo"
+                />
+              </Link>
+              <Link to="/posts" className="brand-logo hide-on-med-and-down">
+                Elas por elas
+              </Link>
+              {isLoggedIn ? authLinks : guestLinks}
+            </div>
           </div>
         </nav>
       </div>
