@@ -16,10 +16,12 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GET_HISTORICO_ADM:
       return {
+        ...state,
         historicoAdm: action.payload
       };
     case ADD_HISTORICO:
       return {
+        ...state,
         historico: [action.payload, ...state.historico]
       };
     case GET_HISTORICO:
