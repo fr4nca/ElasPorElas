@@ -75,15 +75,6 @@ class Header extends Component {
         <nav style={{ backgroundColor: "#662D91" }}>
           <div className="navbar-fixed z-depth-3">
             <div className="nav-wrapper container">
-              <Link to="/posts" className="brand-logo left hide-on-med-and-up">
-                <img
-                  style={{ marginTop: 4 + "px" }}
-                  src="logo.png"
-                  width="39,2706468"
-                  height="48,3267708"
-                  alt="logo"
-                />
-              </Link>
               <Link to="/posts" className="brand-logo hide-on-med-and-down">
                 Elas por elas
               </Link>

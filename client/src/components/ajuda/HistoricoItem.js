@@ -189,7 +189,7 @@ class HistoricoItem extends Component {
     }
     return (
       <div className="row">
-        <div className="col s6 m9 l12">
+        <div className="col s4 m9 l12">
           <div className="card z-depth-3">
             <div className="card-content">{render}</div>
           </div>

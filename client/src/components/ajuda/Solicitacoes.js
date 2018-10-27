@@ -31,11 +31,11 @@ class Solicitacoes extends Component {
     return (
       <div style={{ width: 1000 + "px" }} className="container">
         <div className="row">
-          <div className="col s7 m9 l12">
+          <div className="col s4 m9 l12">
             <h2 className="center">Solicitações</h2>
           </div>
-          {render}
         </div>
+        {render}
       </div>
     );
   }

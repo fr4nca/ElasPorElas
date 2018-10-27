@@ -29,7 +29,7 @@ class Historico extends Component {
     return (
       <div style={{ width: 1000 + "px" }} className="container">
         <div className="row">
-          <div className="col s6 m9 l12">
+          <div className="col s4 m9 l12">
             <HistoricoForm />
             <h2>Histórico de ajuda</h2>
           </div>
