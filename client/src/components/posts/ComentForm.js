@@ -22,7 +22,10 @@ class ComentForm extends Component {
     };
 
     this.props.addComentario(comentario);
-    this.props.adicionaComentario(comentario);
+    this.props.adicionaComentario({
+      ...comentario,
+      nome: this.props.auth.user.nome
+    });
   };
 
   onChange = e => {
