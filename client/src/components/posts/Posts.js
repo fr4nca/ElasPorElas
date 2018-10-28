@@ -14,10 +14,10 @@ class Posts extends Component {
     const { posts } = this.props.posts;
     let corpo;
 
-    if (posts === null) {
-      corpo = <h1>Não há postagens..</h1>;
-    } else if (posts.length > 0) {
+    if (posts.length > 0) {
       corpo = posts.map(post => <PostItem key={post.dta_post} post={post} />);
+    } else {
+      corpo = <h1>Não há postagens..</h1>;
     }
     return (
       <Fragment>

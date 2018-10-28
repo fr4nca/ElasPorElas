@@ -39,7 +39,7 @@ export const registerUser = (user, history) => async dispatch => {
     link_rede_social,
     senha
   } = user;
-  await axios.post("/api/auth/register", {
+  const data = await axios.post("/api/auth/register", {
     CPF,
     nome,
     DDD_telefone,
@@ -50,7 +50,8 @@ export const registerUser = (user, history) => async dispatch => {
   });
 
   dispatch({
-    type: REGISTER_USER
+    type: REGISTER_USER,
+    payload: data.data
   });
 
   history.push("/");
