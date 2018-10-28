@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store";
 import "./App.css";
 import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 import LoginForm from "./components/user/LoginForm";
 import Posts from "./components/posts/Posts";
 import PrivateRoute from "./components/common/PrivateRoute";
@@ -47,6 +48,7 @@ class App extends Component {
                 />
               </Switch>
             </div>
+            <Footer />
           </Fragment>
         </Router>
       </Provider>

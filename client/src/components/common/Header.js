@@ -82,16 +82,16 @@ class Header extends Component {
 
     return (
       <div>
-        <nav style={{ backgroundColor: "#662D91" }}>
-          <div className="navbar-fixed z-depth-3">
+        <div className="navbar-fixed z-depth-3">
+          <nav style={{ backgroundColor: "#662D91" }}>
             <div className="nav-wrapper container">
               <Link to="/posts" className="brand-logo hide-on-med-and-down">
                 Elas por elas
               </Link>
               {isLoggedIn ? authLinks : guestLinks}
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
     );
   }
