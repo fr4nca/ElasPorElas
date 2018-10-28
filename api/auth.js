@@ -4,6 +4,7 @@ const router = express.Router();
 const query = require("../config/database");
 
 router.post("/register", async (req, res) => {
+  console.log(req.body);
   try {
     const {
       CPF,
@@ -18,7 +19,7 @@ router.post("/register", async (req, res) => {
     query(`SELECT email FROM mulher WHERE email='${email}'`, (err, result) => {
       if (result[0] === undefined) {
         if (req.body.link_rede_social !== "") {
-          const qry = `INSERT INTO mulher VALUES ('${CPF}', '${nome}', ${DDD_telefone}, ${num_telefone}, '${email}', '${link_rede_social}', '${hash}')`;
+          const qry = `INSERT INTO mulher(CPF, nome, DDD_telefone, num_telefone, link_rede_social, email,  senha) VALUES ('${CPF}', '${nome}', ${DDD_telefone}, ${num_telefone}, '${email}', '${link_rede_social}', '${hash}')`;
           query(qry, err => {
             if (err) {
               return res.status(400).send({ error: "Registration failed" });
