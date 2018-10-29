@@ -8,7 +8,7 @@ import VoluntariaItem from "./VoluntariaItem";
 
 class Voluntarias extends Component {
   state = {
-    especialidade: ""
+    especialidade: "0"
   };
 
   componentWillMount() {
@@ -47,8 +47,18 @@ class Voluntarias extends Component {
   render() {
     let render;
     if (this.props.catalogo.voluntarias) {
-      if (this.props.catalogo.voluntarias.length > 0) {
+      if (
+        this.props.catalogo.voluntarias.length > 0 &&
+        this.state.especialidade === "0"
+      ) {
         render = this.props.catalogo.voluntarias.map(voluntaria => (
+          <VoluntariaItem
+            voluntaria={voluntaria}
+            key={voluntaria.CPF + voluntaria.ID_ajuda}
+          />
+        ));
+      } else if (this.props.catalogo.voluntariasEspecifica.length > 0) {
+        render = this.props.catalogo.voluntariasEspecifica.map(voluntaria => (
           <VoluntariaItem
             voluntaria={voluntaria}
             key={voluntaria.CPF + voluntaria.ID_ajuda}
@@ -57,14 +67,6 @@ class Voluntarias extends Component {
       } else {
         render = <h3>Não há ajudas</h3>;
       }
-    }
-    if (this.props.catalogo.voluntariasEspecifica) {
-      render = this.props.catalogo.voluntariasEspecifica.map(voluntaria => (
-        <VoluntariaItem
-          voluntaria={voluntaria}
-          key={voluntaria.CPF + voluntaria.ID_ajuda}
-        />
-      ));
     }
 
     let renderSelect;
@@ -82,10 +84,10 @@ class Voluntarias extends Component {
               onChange={this.onChange}
               className="browser-default"
             >
-              <option value="" disabled>
+              <option value="0" disabled>
                 Especialidade
               </option>
-              <option value={0}>Todos</option>
+              <option value="0">Todos</option>
               {this.props.ajuda.ajudas.map(ajuda => {
                 return (
                   <option key={ajuda.ID_ajuda} value={ajuda.ID_ajuda}>
