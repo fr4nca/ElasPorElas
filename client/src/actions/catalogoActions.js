@@ -1,4 +1,9 @@
-import { GET_CATALOGO, GET_MULHERES_CATALOGO, GET_VOLUNTARIAS } from "./types";
+import {
+  GET_CATALOGO,
+  GET_MULHERES_CATALOGO,
+  GET_VOLUNTARIAS,
+  GET_AJUDA_ESPECIFICO
+} from "./types";
 import axios from "axios";
 
 export const getCatalogo = cpf => async dispatch => {
@@ -25,5 +30,12 @@ export const getVoluntarias = () => async dispatch => {
   dispatch({
     type: GET_VOLUNTARIAS,
     payload: voluntarias.data
+  });
+};
+
+export const getVoluntariasEspecifico = id => async dispatch => {
+  dispatch({
+    type: GET_AJUDA_ESPECIFICO,
+    payload: id
   });
 };

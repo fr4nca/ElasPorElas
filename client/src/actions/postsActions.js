@@ -1,5 +1,4 @@
-import { GET_POSTS } from "./types";
-import { ADD_POST } from "./types";
+import { GET_POSTS, DELETE_POST, ADD_POST } from "./types";
 import axios from "axios";
 
 export const getPosts = () => async dispatch => {
@@ -22,5 +21,19 @@ export const addPost = post => async dispatch => {
   dispatch({
     type: ADD_POST,
     payload: { ...post, nome: post.nome }
+  });
+};
+
+export const deletePost = post => async dispatch => {
+  const { dta_post, mulher_CPF } = post;
+
+  await axios.post("/api/post/delete", {
+    dta_post,
+    mulher_CPF
+  });
+
+  dispatch({
+    type: DELETE_POST,
+    payload: { dta_post, mulher_CPF }
   });
 };

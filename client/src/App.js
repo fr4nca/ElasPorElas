@@ -12,7 +12,7 @@ import RegisterForm from "./components/user/RegisterForm";
 import Historico from "./components/ajuda/Historico";
 import Solicitacoes from "./components/ajuda/Solicitacoes";
 import Voluntarias from "./components/ajuda/Voluntarias";
-import Ajudas from "./components/ajuda/Ajudas";
+import Relatorios from "./components/relatorios/Relatorios";
 
 class App extends Component {
   render() {
@@ -31,7 +31,7 @@ class App extends Component {
                 <PrivateRoute exact path="/historico" component={Historico} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/ajudas" component={Ajudas} />
+                <PrivateRoute exact path="/relatorios" component={Relatorios} />
               </Switch>
               <Switch>
                 <PrivateRoute

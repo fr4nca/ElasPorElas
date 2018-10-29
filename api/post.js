@@ -30,14 +30,25 @@ router.get("/", (req, res) => {
   }
 });
 
-router.get("/posts/:cpf", (req, res) => {});
-
 router.post("/add", (req, res) => {
   const { mulher_CPF, descricao, anonimo, dta_post } = req.body;
   const qry = `INSERT INTO post VALUES('${dta_post}', '${mulher_CPF}', '${descricao}', ${anonimo})`;
   query(qry, err => {
     if (err) res.status(400).send({ error: "Something went wrong" });
     return res.status(200).send({ msg: "Post adicionado" });
+  });
+});
+
+router.post("/delete", (req, res) => {
+  const { dta_post, mulher_CPF } = req.body;
+  let qry = `DELETE FROM comentario WHERE post_dta_post = '${dta_post}' and post_mulher_CPF = '${mulher_CPF}'`;
+  query(qry, err => {
+    if (err) res.status(400).send({ error: "Something went wrong" });
+  });
+  qry = `DELETE FROM post WHERE dta_post = '${dta_post}' and mulher_CPF = '${mulher_CPF}'`;
+  query(qry, err => {
+    if (err) res.status(400).send({ error: "Something went wrong" });
+    return res.status(200).send({ msg: "Post deletado" });
   });
 });
 

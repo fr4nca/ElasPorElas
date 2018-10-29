@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 export default class AjudaItem extends Component {
   render() {
     const { historico } = this.props;
+    const { dta_solicitacao } = historico;
+    const data = moment(dta_solicitacao)
+      .parseZone()
+      .format("YYYY-MM-DD HH:mm:ss");
 
     let render = (
       <div className="row">
@@ -11,7 +16,10 @@ export default class AjudaItem extends Component {
           <span className="card-title">
             Solicitante: {historico.solicitante}
           </span>
-          <span>Tipo de ajuda: {historico.especialidade}</span>
+          <span>
+            Tipo de ajuda: {historico.especialidade} <br />
+          </span>
+          <span>Data de solicitação: {data}</span>
           <div>
             {historico.cancelada.data[0] === 1 ? (
               <p>Cancelada</p>

@@ -23,7 +23,7 @@ class Historico extends Component {
         />
       ));
     } else {
-      render = <h3>Não há ajudas</h3>;
+      render = <p>Não há ajudas</p>;
     }
 
     return (

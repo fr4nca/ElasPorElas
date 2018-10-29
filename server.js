@@ -18,6 +18,7 @@ app.use("/api/ajuda", require("./api/ajuda"));
 app.use("/api/post", require("./api/post"));
 app.use("/api/catalogo", require("./api/catalogo"));
 app.use("/api/historico", require("./api/historico"));
+app.use("/api/relatorios", require("./api/relatorios"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));

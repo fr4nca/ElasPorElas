@@ -29,7 +29,7 @@ class Header extends Component {
         {adm ? (
           adm.data[0] === 1 ? (
             <li>
-              <Link style={{ fontSize: 17 + "px" }} to="/ajudas">
+              <Link style={{ fontSize: 17 + "px" }} to="/relatorios">
                 Relatório de ajudas
               </Link>
             </li>
@@ -49,7 +49,7 @@ class Header extends Component {
         ) : null}
         <li>
           <Link style={{ fontSize: 17 + "px" }} to="/historico">
-            Ajuda
+            Histórico de ajudas
           </Link>
         </li>
         <li>

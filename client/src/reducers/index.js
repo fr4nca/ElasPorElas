@@ -6,6 +6,7 @@ import comentsReducer from "./comentsReducer";
 import ajudaReducer from "./ajudaReducer";
 import historicoReducer from "./historicoReducer";
 import catalogoReducer from "./catalogoReducer";
+import relatoriosReducer from "./relatoriosReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   comentarios: comentsReducer,
   ajuda: ajudaReducer,
   historico: historicoReducer,
-  catalogo: catalogoReducer
+  catalogo: catalogoReducer,
+  relatorios: relatoriosReducer
 });

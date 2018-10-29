@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import AjudaItem from "./AjudaItem";
 import { PropTypes } from "prop-types";
 import { getHistoricoAdm } from "../../actions/historicoActions";
+import Tabela from "./Tabela";
 
-class Ajudas extends Component {
+class Relatorios extends Component {
   componentWillMount() {
     this.props.getHistoricoAdm();
   }
@@ -14,6 +15,7 @@ class Ajudas extends Component {
 
     return (
       <div>
+        <Tabela />
         <h2>Relatório de ajudas</h2>
         {historicoAdm
           ? historicoAdm.map(historico => (
@@ -32,7 +34,7 @@ class Ajudas extends Component {
   }
 }
 
-Ajudas.propTypes = {
+Relatorios.propTypes = {
   historico: PropTypes.object.isRequired,
   getHistoricoAdm: PropTypes.func.isRequired
 };
@@ -44,4 +46,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getHistoricoAdm }
-)(Ajudas);
+)(Relatorios);

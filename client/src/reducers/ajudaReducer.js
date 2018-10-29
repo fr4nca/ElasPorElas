@@ -7,14 +7,12 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_AJUDA:
-      return {
-        ...state
-      };
+      return {};
     case GET_AJUDAS:
       return {
-        ...state,
         ajudas: action.payload
       };
+
     default:
       return state;
   }

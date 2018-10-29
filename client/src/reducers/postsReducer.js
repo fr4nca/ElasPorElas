@@ -1,5 +1,4 @@
-import { GET_POSTS } from "../actions/types";
-import { ADD_POST } from "../actions/types";
+import { GET_POSTS, ADD_POST, DELETE_POST } from "../actions/types";
 
 const initialState = {
   posts: [],
@@ -8,6 +7,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(
+          post =>
+            post.mulher_CPF !== action.payload.mulher_CPF &&
+            post.dta_post !== action.payload.dta_post
+        )
+      };
     case ADD_POST:
       return {
         ...state,
@@ -18,6 +26,7 @@ export default (state = initialState, action) => {
         ...state,
         posts: action.payload.reverse()
       };
+
     default:
       return state;
   }

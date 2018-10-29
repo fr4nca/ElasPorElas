@@ -25,7 +25,7 @@ class Solicitacoes extends Component {
         />
       ));
     } else {
-      render = <h3>Não há solicitações</h3>;
+      render = <p>Não há solicitações...</p>;
     }
 
     return (
