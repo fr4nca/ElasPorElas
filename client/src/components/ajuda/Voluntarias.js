@@ -84,9 +84,6 @@ class Voluntarias extends Component {
               onChange={this.onChange}
               className="browser-default"
             >
-              <option value="0" disabled>
-                Especialidade
-              </option>
               <option value="0">Todos</option>
               {this.props.ajuda.ajudas.map(ajuda => {
                 return (
