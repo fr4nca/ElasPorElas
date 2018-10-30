@@ -50,7 +50,7 @@ router.post("/authenticate", async (req, res) => {
     if (result[0]) {
       let user = result[0];
       if (!(await bcrypt.compare(senha, user.senha))) {
-        return res.status(200).send({ error: "Senha inválida" });
+        return res.status(400).send({ error: "Senha inválida" });
       } else {
         user.senha = "";
         return res.status(200).send(user);
