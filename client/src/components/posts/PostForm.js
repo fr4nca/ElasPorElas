@@ -67,6 +67,7 @@ class PostForm extends Component {
             id="post"
             name="descricao"
             required
+            maxLength="400"
           />
           <label style={{ fontSize: 20 + "px" }} htmlFor="post">
             Digite seu texto..

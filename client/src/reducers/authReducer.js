@@ -1,9 +1,7 @@
 import { SET_CURRENT_USER, REGISTER_USER } from "../actions/types";
 
 const initialState = {
-  isLoggedIn: localStorage.getItem("logged")
-    ? localStorage.getItem("logged")
-    : false,
+  isLoggedIn: false,
   user: {}
 };
 
@@ -14,7 +12,6 @@ export default (state = initialState, action) => {
         ...state
       };
     case SET_CURRENT_USER:
-      localStorage.setItem("logged", "true");
       return {
         ...state,
         isLoggedIn: action.payload !== null,

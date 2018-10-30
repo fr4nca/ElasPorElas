@@ -13,6 +13,8 @@ class LoginForm extends Component {
     error: {}
   };
 
+  componentWillMount() {}
+
   componentWillReceiveProps(nextProps) {
     this.props.getCatalogo(nextProps.auth.user.CPF);
   }

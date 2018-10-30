@@ -25,7 +25,7 @@ class App extends Component {
               <Route exact path="/" component={LoginForm} />
               <Route exact path="/register" component={RegisterForm} />
               <Switch>
-                <PrivateRoute initial exact path="/posts" component={Posts} />
+                <PrivateRoute exact path="/posts" component={Posts} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/historico" component={Historico} />
