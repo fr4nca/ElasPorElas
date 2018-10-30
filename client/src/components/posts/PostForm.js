@@ -32,7 +32,7 @@ class PostForm extends Component {
     e.preventDefault();
     const cpf = this.props.auth.user.CPF;
     const { descricao } = this.state;
-    const anonimo = this.state.anonimo ? 1 : 0;
+    const anonimo = this.state.anonimo ? "1" : "0";
 
     const post = {
       dta_post: moment()
