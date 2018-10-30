@@ -17,18 +17,20 @@ class Relatorios extends Component {
       <div>
         <Tabela />
         <h2>Relatório de ajudas</h2>
-        {historicoAdm
-          ? historicoAdm.map(historico => (
-              <AjudaItem
-                key={
-                  historico.mulher_CPF +
-                  historico.catalogo_mulher_CPF +
-                  historico.dta_solicitacao
-                }
-                historico={historico}
-              />
-            ))
-          : null}
+        {historicoAdm ? (
+          historicoAdm.map(historico => (
+            <AjudaItem
+              key={
+                historico.mulher_CPF +
+                historico.catalogo_mulher_CPF +
+                historico.dta_solicitacao
+              }
+              historico={historico}
+            />
+          ))
+        ) : (
+          <p>Histórico vazio.. </p>
+        )}
       </div>
     );
   }

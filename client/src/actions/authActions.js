@@ -1,5 +1,4 @@
-import { SET_CURRENT_USER } from "./types";
-import { REGISTER_USER } from "./types";
+import { SET_CURRENT_USER, REGISTER_USER } from "./types";
 
 import axios from "axios";
 

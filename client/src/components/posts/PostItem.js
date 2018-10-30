@@ -3,7 +3,6 @@ import Coments from "./Coments";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { deletePost } from "../../actions/postsActions";
-import { DH_UNABLE_TO_CHECK_GENERATOR } from "constants";
 
 class PostItem extends Component {
   state = {

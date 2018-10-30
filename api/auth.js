@@ -56,7 +56,7 @@ router.post("/authenticate", async (req, res) => {
         return res.status(200).send(user);
       }
     } else {
-      return res.status(200).send({ error: "Usuário não encontrado" });
+      return res.status(400).send({ error: "Usuário não encontrado" });
     }
   });
 });
